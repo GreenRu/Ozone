@@ -11,6 +11,9 @@ through options.
 | **Cumulus** | A file explorer | *not started* |
 | **Sky Box** | Installs and updates the others | *not started* |
 
+Stratus is usable. Nimbus is a shell that runs — the window, both themes, sheets
+and files — and says in its own README what is not built yet.
+
 The names are the clouds each program behaves like. Stratus is the flat, layered
 sheet — the one you look *through*. Nimbus is the rain cloud, the one that
 actually produces something. Cumulus is the heaped, many-lobed one: lots of small
