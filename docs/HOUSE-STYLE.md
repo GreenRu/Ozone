@@ -139,6 +139,46 @@ Copy the file. It has no dependencies and knows nothing about browsers.
 Fills that overlap must be **opaque**. Lobes cross each other, and any alpha
 compounds where they do and exposes the seams.
 
+## Icons
+
+Every program uses the same set: [css.gg](https://css.gg) by Astrit, kept in
+`icons/` in the Ozone repository along with why and how.
+
+**Take them from tag `2.1.1`, which is MIT.** From `2.1.2` onward css.gg is
+licensed for personal, non-commercial use only, forbids derivative works, and
+needs written permission for anything commercial. Ozone is GPL-3.0-or-later,
+which has to hand everyone downstream the right to use, change and sell the
+whole program. Those cannot both be true of one file, so the newer icons cannot
+ship here however good they are. `2.1.1` has everything these programs need.
+
+Two rules follow from how the set is drawn:
+
+- **Never set `fill` or `stroke` on an icon.** Part of the set is drawn filled
+  and part stroked, both using `currentColor`. A stylesheet that forces either
+  flattens half of them. Set `color` and a size; the icon does the rest, in both
+  themes.
+- **Never edit an icon.** One that has been altered is no longer the thing the
+  licence covers, and the next person to update the set will overwrite it. If a
+  state needs a mark the set does not have - a muted speaker, say - draw it in
+  CSS beside the icon rather than into it.
+
+Icons are not loaded at runtime. `tools/build-icons.js` bakes the folder into
+one `src/shared/icons.js` per program, which is committed, so a program cloned
+on its own still has its icons. Markup names what it wants and one pass fills
+them in:
+
+```html
+<button class="tool-btn" id="back" data-icon="chevron-left"></button>
+```
+
+```js
+Icons.paint(document);
+```
+
+A program's own mark is not an icon. The Stratus cloud, the Nimbus rain cloud
+and the raining cloud that stands in for a page that did not load are drawn by
+hand and stay that way - they are the thing that makes each program itself.
+
 ## Motion
 
 Everything that appears, grows or is pressed overshoots slightly and settles.

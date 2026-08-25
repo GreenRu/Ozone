@@ -90,6 +90,25 @@ Ambient touches, each in `src/shared/`: `stars.js` (night, slow brightness
 drift), `birds.js` (day). Both belong on content pages only — the interface stays
 still.
 
+## Icons
+
+css.gg, from tag **`2.1.1`** - the last MIT one. Later versions are
+non-commercial-only and forbid derivative works, which cannot ship in a
+GPL-3.0-or-later program. The set lives in `Ozone/icons/`; `tools/build-icons.js`
+bakes it into `src/shared/icons.js` per program.
+
+- Never set `fill` or `stroke` on an icon: part of the set is filled and part
+  stroked, both on `currentColor`. Set `color` and a size only.
+- Keep `fill="none"` on the wrapping `<svg>`. Without it svg's default takes
+  over, which is solid black, and every stroked icon arrives as a blob.
+- Never edit an icon. A state the set has no mark for - a muted speaker - gets
+  drawn in CSS beside it, not into it.
+- A program's own mark is not an icon and stays hand-drawn.
+
+```html
+<button class="tool-btn" id="back" data-icon="chevron-left"></button>
+```
+
 ## Motion
 
 Everything that appears, grows or is pressed overshoots and settles. Nothing
