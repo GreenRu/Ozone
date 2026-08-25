@@ -92,12 +92,28 @@ window
 
 ## Other traps, in the order they cost time
 
+**Denying a window-open blocks the click's other work as well.** Returning
+`{ action: 'deny' }` from `setWindowOpenHandler` looks like the tidy way to turn
+popups into tabs. Chromium counts it as a blocked popup, and anything else that
+click was going to do - notably a download starting on the same gesture - is
+suppressed with it. Measured on obsproject.com: deny downloaded nothing at all,
+allow downloaded the installer. Allow it with
+`overrideBrowserWindowOptions: { show: false }` and handle the window in
+`did-create-window`: a real page has its address moved into a tab, and a window
+that became a download never commits an address and can simply be closed.
+
 **`executeJavaScriptInIsolatedWorld` is on `webContents`, not on `mainFrame`.**
 
 **A filled animation outranks inline styles.** `animation: x 1s both` keeps its
 last keyframe applying forever, silently beating every later attempt to set
 `transform` or `opacity` from script. The state that takes over needs
 `animation: none`.
+
+**A scripted click is not a click.** `executeJavaScript(code)` runs without a
+user gesture, and Chromium's popup blocker treats it differently from a real
+press - so a link can work in a probe and fail in life, or the reverse. Pass the
+second argument to supply a gesture, and confirm anything that hangs off a click
+with a real OS press.
 
 **Guard everything destroyable.** `isDestroyed()` before touching a view or its
 `webContents`, every time. During shutdown a render frame can be disposed while

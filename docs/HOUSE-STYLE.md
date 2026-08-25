@@ -232,6 +232,11 @@ found.
 
 ## Rules that do not bend
 
+- **Tidy is not the same as correct.** Denying a browser engine's request
+  because your own arrangement is neater can suppress work it was going to do on
+  your behalf - in Stratus, denying a popup silently cancelled every download
+  that started on the same click. When you turn something down, check what else
+  went with it.
 - **Refuse rather than degrade.** Secrets are encrypted with Electron's
   `safeStorage`, which delegates to the OS keystore. If the platform cannot
   encrypt, saving is *refused* — never written in the clear. A password store
@@ -343,7 +348,9 @@ The rules, each of which was learned by losing an afternoon:
   the program.
 - **Synthetic events do not exercise the real input path.** A dispatched
   `MouseEvent` skips the pointer path entirely, so a suite can pass green while
-  real clicks do nothing. Pointer behaviour needs a real OS click.
+  real clicks do nothing. Pointer behaviour needs a real OS click - and a
+  scripted `.click()` carries no user gesture, which is enough on its own to
+  change what a browser engine lets the page do next.
 - **A window with `show: false` never gives its document focus**, so anything
   depending on `focusin` or `activeElement` quietly never happens.
 - **Finish with a real boot.** Every suite that constructs your app object by
