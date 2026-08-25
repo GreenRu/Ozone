@@ -79,6 +79,20 @@ bookmark backups are decoded in forty lines rather than by adding a package.
 
 ## Working practice
 
+**Enumerate, then ask.** Before building a feature, work out the whole space of
+what could be built, show it grouped and costed, and ask which parts to do. This
+holds for every program in the family and for every request, however small the
+wording sounds - "add the basic features" is not a specification, and the picture
+behind those words is never the same as the one you would build from them.
+
+Never pick a subset quietly, and never build the lot on the assumption that more
+is better. List it, say what each part costs and what has to come first, ask, and
+then build exactly what came back - in full. The list is worth as much as the
+code: it is the only point at which the shape of a program is cheap to change.
+
+The exception is a defect. A bug has one correct behaviour, so asking which parts
+of "working properly" to implement is noise - fix it, and say what you found.
+
 **Measure; do not reason.** Pixel-sample, probe geometry, read event logs. Most
 expensive bugs here looked like one thing and were another — "the last fields
 were not recognised" was an exception thrown on the third field, abandoning the

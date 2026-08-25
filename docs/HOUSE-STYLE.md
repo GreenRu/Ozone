@@ -198,6 +198,38 @@ Preferences live in one JSON file in the user-data directory, read through a
 defaults-merged `Store`. **On-disk keys are permanent.** Renaming one costs a
 migration, and a migration that goes wrong costs somebody their data.
 
+## Enumerate, then ask
+
+**Before building a feature, work out the whole space of what could be built,
+show it, and ask which parts to do.** This applies to every program in the
+family, and to every request, however small the wording sounds.
+
+"Add the basic features" is not a specification. Whoever asks has a picture of
+what "basic" covers, and it is never the same picture as the one whoever builds
+it has. Guessing produces two bad outcomes and no good one: half the list gets
+built and the missing half has to be asked for again, or all of it gets built and
+most of it was not wanted.
+
+So:
+
+1. **List everything the feature area could reasonably contain** - including the
+   parts nobody mentioned, and the structural work the rest would sit on.
+   Grouped, so the list can be read rather than waded through.
+2. **Say what each thing costs** where it is not obvious - especially where one
+   item is a whole afternoon and its neighbour is ten minutes, or where one has
+   to be built before another can be.
+3. **Ask which to build.** Offer the list; do not pick a subset quietly and do
+   not build all of it on the assumption that more is better.
+4. **Then build exactly what came back**, in full.
+
+The list itself is worth as much as the code. It is the only point at which the
+shape of a program is cheap to change, and writing it down is what turns "add
+some editor features" into a decision somebody actually made.
+
+The exception is a fix: a defect has one correct behaviour, and asking which
+parts of "working properly" to implement is noise. Fix it, and say what you
+found.
+
 ## Rules that do not bend
 
 - **Refuse rather than degrade.** Secrets are encrypted with Electron's
