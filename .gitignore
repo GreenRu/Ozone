@@ -1,0 +1,8 @@
+# Each program is its own repository, cloned in beside this one.
+/stratus/
+/nimbus/
+/cumulus/
+/sky-box/
+
+node_modules/
+dist/
